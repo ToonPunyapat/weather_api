@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-weight: 300;
+            font-size: 2.5rem;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            font-weight: 500;
+        }
+        .form-control {
+            border-radius: 0.375rem;
+            border-color: #ddd;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        footer {
+            margin-top: 40px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <!-- Header -->
+        <header class="text-center">
+            <h1>Weather Forecast</h1>
+            <p>Check the weather by region, province, or location</p>
+        </header>
+
+        <!-- Fetch Weather by Region -->
+        <section class="text-center">
+            <a href="/fetch-weather-regions" class="btn btn-primary btn-lg">View Weather by Region</a>
+            <a href="/fetch-weather-provinces-only" class="btn btn-primary btn-lg">View Weather by Region oneline</a>
+        </section>
+
+        <!-- Fetch Weather by Province -->
+        <section>
+            <h2 class="text-center">Get Weather by Province</h2>
+            <form action="/fetch-weather-province" method="get" class="row justify-content-center">
+                <div class="col-md-6">
+                    <label for="province" class="form-label">Province</label>
+                    <input type="text" id="province" name="province" class="form-control" placeholder="e.g., กรุงเทพมหานคร" required>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Get Weather</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Fetch Weather by Province and Amphoe -->
+        <section>
+            <h2 class="text-center">Get Weather by Province and Amphoe</h2>
+            <form action="/fetch-weather-province-amphoe" method="get" class="row justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <label for="province-amphoe" class="form-label">Province</label>
+                    <input type="text" id="province-amphoe" name="province" class="form-control" placeholder="e.g., เชียงใหม่" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="amphoe" class="form-label">Amphoe</label>
+                    <input type="text" id="amphoe" name="amphoe" class="form-control" placeholder="e.g., แม่แตง" required>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Get Weather</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Fetch Weather by Province, Amphoe, and Tambon -->
+        <section>
+            <h2 class="text-center">Get Weather by Province, Amphoe, and Tambon</h2>
+            <form action="/fetch-weather-province-amphoe-tambon-cond" method="get" class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <label for="province-tambon" class="form-label">Province</label>
+                    <input type="text" id="province-tambon" name="province" class="form-control" placeholder="e.g., เชียงราย" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="amphoe-tambon" class="form-label">Amphoe</label>
+                    <input type="text" id="amphoe-tambon" name="amphoe" class="form-control" placeholder="e.g., ขุนตาล" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="tambon" class="form-label">Tambon</label>
+                    <input type="text" id="tambon" name="tambon" class="form-control" placeholder="e.g., ยางฮอม" required>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Get Weather</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Fetch Weather by Latitude and Longitude -->
+        <section>
+            <h2 class="text-center">Get Weather by Latitude and Longitude</h2>
+            <form action="/fetch-weather-lat-lon" method="get" class="row justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <label for="lat" class="form-label">Latitude</label>
+                    <input type="text" id="lat" name="lat" class="form-control" placeholder="e.g., 13.7563" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lon" class="form-label">Longitude</label>
+                    <input type="text" id="lon" name="lon" class="form-control" placeholder="e.g., 100.5018" required>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Get Weather</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Fetch Hourly Weather -->
+<!-- Fetch Hourly Weather -->
+<section>
+    <h2 class="text-center">Get Hourly Weather Forecast</h2>
+    <form action="/fetch-hourly-weather" method="get" class="row justify-content-center">
+        <div class="col-md-2 mb-3">
+            <label for="province-hourly" class="form-label">Province</label>
+            <input type="text" id="province-hourly" name="province" class="form-control" placeholder="e.g., นครปฐม" required>
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="amphoe-hourly" class="form-label">Amphoe</label>
+            <input type="text" id="amphoe-hourly" name="amphoe" class="form-control" placeholder="e.g., สามพราน">
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="tambon-hourly" class="form-label">Tambon</label>
+            <input type="text" id="tambon-hourly" name="tambon" class="form-control" placeholder="e.g., บ้านแพ้ว">
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" id="date" name="date" class="form-control" required>
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="hour" class="form-label">Hour</label>
+            <input type="number" id="hour" name="hour" class="form-control" min="0" max="23" required>
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="duration" class="form-label">Duration (hours)</label>
+            <input type="number" id="duration" name="duration" class="form-control" min="1" max="48" required>
+        </div>
+        
+        <div class="col-12 text-center mt-3">
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </div>
+    </form>
+</section>
+
+
+
+    </div>
+
+    <footer class="text-center">
+        <p>&copy; 2024 Weather Forecast App</p>
+    </footer>
+</body>
+</html>
